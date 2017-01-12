@@ -2,7 +2,7 @@
 declared-services:
   metrics-collector-cloudant-service:
     label: cloudantNoSQLDB
-    plan: Shared
+    plan: Lite
 applications:
 - name: metrics-collector
   memory: 256M
