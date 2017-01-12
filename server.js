@@ -16,6 +16,8 @@ var errorHandler = require('errorhandler');
 var _ = require('lodash');
 var cloudant = require('./lib/storage');
 var misc = require('./lib/misc');
+var cfenv = require('cfenv');
+var	appEnv = cfenv.getAppEnv();
 
 var dbName =  process.env.CLOUDANT_DB_NAME || "tracker_db";
 var type_pageView = "pageView";
@@ -125,18 +127,22 @@ app.get("*", function(request, response){
     response.status(500).send('<h1>Invalid Request</h1><p>Simple Metrics Collector captures web metrics data and stores it in <a href="https://cloudant.com">Cloudant</a>. There are no web pages here. This is middleware.</p><p>For more information check out <a href="https://github.com/ibm-cds-labs/metrics-collector/">the GitHub repo</a></p>');
 });
 
-//If Cloud Foundry
-var port = process.env.VCAP_APP_PORT || 8081;
-var connected = function() {
-	console.log("CDS Labs Tracker Collector started on port %s : %s", port, Date(Date.now()));
-};
+http.createServer(app).listen(appEnv.port, ( appEnv.bind == "localhost" ? null : appEnv.bind ), () => {
+  console.log(`CDS Labs Tracker Collector listening on ${appEnv.url}`);
+});
 
-if (process.env.VCAP_APP_HOST){
-	http.createServer(app).listen(process.env.VCAP_APP_PORT,
-                         process.env.VCAP_APP_HOST,
-                         connected);
-}else{
-	http.createServer(app).listen(port,connected);
-}
+// //If Cloud Foundry
+// var port = process.env.VCAP_APP_PORT || 8081;
+// var connected = function() {
+// 	console.log("CDS Labs Tracker Collector started on port %s : %s", port, Date(Date.now()));
+// };
+
+// if (process.env.VCAP_APP_HOST){
+// 	http.createServer(app).listen(process.env.VCAP_APP_PORT,
+//                          process.env.VCAP_APP_HOST,
+//                          connected);
+// }else{
+// 	http.createServer(app).listen(port,connected);
+// }
 
 require("cf-deployment-tracker-client").track();
