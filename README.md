@@ -11,15 +11,15 @@ Here’s an architectural overview of our metrics collector. Its middleware comp
 
 <img src="http://developer.ibm.com/clouddataservices/wp-content/uploads/sites/47/2015/07/collector-arch-1024x327.png">
 
-## Deploy to IBM Bluemix
+## Deploy to IBM Cloud
 
 ###One-Click Deployment
 
-The fastest way to deploy this application to Bluemix is to click this **Deploy to Bluemix** button. Or, if you prefer working from the command line, skip to the **Deploy Manually** section.
+The fastest way to deploy this application to IBM Cloud is to click this **Deploy to IBM Cloud** button. Or, if you prefer working from the command line, skip to the **Deploy Manually** section.
 
-[![Deploy to Bluemix](https://deployment-tracker.mybluemix.net/stats/666b1e02442c433a63c98d34b87171ac/button.svg)](https://bluemix.net/deploy?repository=https://github.com/ibm-cds-labs/metrics-collector)
+[![Deploy to IBM Cloud](https://metrics-tracker.mybluemix.net/stats/d3f1fccf9886fdc7656070f84cabd8dc/button.svg)](https://bluemix.net/deploy?repository=https://github.com/ibm-watson-data-lab/metrics-collector)
 
-**Don't have a Bluemix account?** If you haven't already, you'll be prompted to sign up for a Bluemix account when you click the button.  Sign up, verify your email address, then return here and click the the **Deploy to Bluemix** button again. Your new credentials let you deploy to the platform and also to code online with Bluemix and Git. If you have questions about working in Bluemix, find answers in the [Bluemix Docs](https://www.ng.bluemix.net/docs/).
+**Don't have an IBM Cloud account?** If you haven't already, you'll be prompted to sign up for a Bluemix account when you click the button.  Sign up, verify your email address, then return here and click the the **Deploy to IBM Cloud** button again. Your new credentials let you deploy to the platform and also to code online with Bluemix and Git. If you have questions about working in IBM Cloud, find answers in the [IBM Cloud Docs](https://www.ng.bluemix.net/docs/).
 
 ###Deploy Manually
 
@@ -30,34 +30,29 @@ If you haven't already, [install the Cloud Foundry command line interface and co
 
 #### Create Backing Services
 
-Create a Cloudant service within Bluemix if one has not already been created:
+Create a Cloudant service within IBM Cloud if one has not already been created:
 
-    $ cf create-service cloudantNoSQLDB Shared metrics-collector-cloudant-service
+    $ cf create-service cloudantNoSQLDB Lite metrics-collector-cloudant-service
 
 #### Deploy
 
-To deploy to Bluemix, simply:
+To deploy to IBM Cloud, simply:
 
     $ cf push
 
-> **Note:** You may notice that Bluemix assigns a URL to your application containing a random word. This is defined in the `manifest.yml` file where the `random-route` key set to the value of `true`. This ensures that multiple people deploying this application to Bluemix do not run into naming collisions. To specify your own route, remove the `random-route` line from the `manifest.yml` file and add a `host` key with the unique value you would like to use for the host name.
+> **Note:** You may notice that IBM Cloud assigns a URL to your application containing a random word. This is defined in the `manifest.yml` file where the `random-route` key set to the value of `true`. This ensures that multiple people deploying this application to IBM Cloud do not run into naming collisions. To specify your own route, remove the `random-route` line from the `manifest.yml` file and add a `host` key with the unique value you would like to use for the host name.
 
-_**Privacy Notice:**_ _This web application includes code to track deployments to [IBM Bluemix](https://www.bluemix.net/) and other Cloud Foundry platforms. Tracking helps us measure our samples' usefulness, so we can continuously improve the content we offer to you. The following information is sent to a [Deployment Tracker](https://github.com/cloudant-labs/deployment-tracker) service on each deployment:_
+**Privacy Notice:**
 
-* _Application Name (`application_name`)_
-* _Space ID (`space_id`)_
-* _Application Version (`application_version`)_
-* _Application URIs (`application_uris`)_
+Refer to https://github.com/IBM/metrics-collector-client-node#privacy-notice
 
-_This data is collected from the `VCAP_APPLICATION` environment variable in IBM Bluemix and other Cloud Foundry platforms. IBM uses this data to track metrics around deployments of sample applications to Bluemix._
-
-_To disable deployment tracking, remove the following line from `server.js`:_
+To disable deployment tracking, remove the following line from `server.js`:
 
 ```
-require("cf-deployment-tracker-client").track();
+require("metrics-tracker-client").track();
 ```
 
-_Once that line is removed, you may also uninstall the `cf-deployment-tracker-client` npm package._
+Once that line is removed, you may also uninstall the `metrics-tracker-client` npm package.
 
 ## Try the Tutorial
 
