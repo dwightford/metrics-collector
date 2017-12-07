@@ -5,7 +5,7 @@ The IBM Cloud Data Services Developer Advocacy team built this lightweight web-t
 and learn how we use the open source Piwik® web analytics app to collect information and Node.js® to store that data in Cloudant. Then try it yourself by implementing tracking on a demo app we provide. Here in Part 1, we focus on data collection. When you’re done, you can try Part 2, where we show how to visualize the data you’ve gathered.
 
 
-##How it works
+## How it works
 
 Here’s an architectural overview of our metrics collector. Its middleware component lives on [IBM Bluemix](https://www.bluemix.net/) (IBM’s open cloud platform for building, running, and managing applications) and serves `tracker.js` and `piwik.js`, which perform the metrics collection work and persist metrics data to the database. We use Cloudant as our database, a NoSQL JSON document store based on Apache CouchDB™. 
 
@@ -13,7 +13,7 @@ Here’s an architectural overview of our metrics collector. Its middleware comp
 
 ## Deploy to IBM Cloud
 
-###One-Click Deployment
+### One-Click Deployment
 
 The fastest way to deploy this application to IBM Cloud is to click this **Deploy to IBM Cloud** button. Or, if you prefer working from the command line, skip to the **Deploy Manually** section.
 
@@ -21,7 +21,7 @@ The fastest way to deploy this application to IBM Cloud is to click this **Deplo
 
 **Don't have an IBM Cloud account?** If you haven't already, you'll be prompted to sign up for a Bluemix account when you click the button.  Sign up, verify your email address, then return here and click the the **Deploy to IBM Cloud** button again. Your new credentials let you deploy to the platform and also to code online with Bluemix and Git. If you have questions about working in IBM Cloud, find answers in the [IBM Cloud Docs](https://www.ng.bluemix.net/docs/).
 
-###Deploy Manually
+### Deploy Manually
 
 #### Configure Cloud Foundry
 
