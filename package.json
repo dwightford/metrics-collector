@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "body-parser": "^1.11.0",
-    "cf-deployment-tracker-client": "^0.x",
+    "metrics-tracker-client": "*",
     "cfenv": "*",
     "cloudant": "^1.0.0",
     "errorhandler": "~1.3.6",
